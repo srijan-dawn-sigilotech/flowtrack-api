@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
@@ -23,6 +22,11 @@ export class AuthService {
       throw new UnauthorizedException();
     }
     return this.signToken(user.id);
+  }
+  
+  async users() {
+    const user = { select: ['id', 'email'], order: { id: 'DESC' }};
+    return this.usersService.findAll(user);
   }
 
   signToken(userId: number) {
