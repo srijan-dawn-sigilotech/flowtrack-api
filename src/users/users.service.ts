@@ -21,8 +21,4 @@ export class UsersService {
   findById(id: number) {
     return this.repo.findOne({ where: { id } });
   }
-
-  findAll(options = {}) {
-    return this.repo.find(options);
-  }
 }
